@@ -1,0 +1,33 @@
+{
+  "name": "gps-tracking",
+  "version": "0.1.0",
+  "description": "Let you work with some GPS trackers that connects through tcp. Also saves the data on your mongodb database ;) ",
+  "main": "index.js",
+  "bin": {
+    "gps-tracking": "gps-tracking.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/freshworkstudio/gps-tracking-nodejs.git"
+  },
+  "keywords": [
+    "gps",
+    "tracker",
+    "Tk103",
+    "car",
+    "gps"
+  ],
+  "author": "Gonzalo De-Spirito (http://www.freshworkstudio.com/)",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/freshworkstudio/gps-tracking-nodejs/issues"
+  },
+  "homepage": "https://github.com/freshworkstudio/gps-tracking-nodejs",
+  "dependencies": {
+	"mongodb": "*",
+	"node.extend":"*"
+  }
+}
