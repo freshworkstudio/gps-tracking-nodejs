@@ -1,11 +1,8 @@
 {
   "name": "gps-tracking",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Let you work with some GPS trackers that connects through tcp. Also saves the data on your mongodb database ;) ",
   "main": "index.js",
-  "bin": {
-    "gps-tracking": "gps-tracking.js"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
