@@ -87,8 +87,12 @@ var server = gps.server(opts,function(device,connection){
     "device_adapter": false, 
     // Wich device adapter will be used to parse the incoming packets. 
     // If false, the server will throw an error. 
-    // At the moment, the modules comes with only one adater: TK103. 
+    // At the moment, the modules comes with only one adater: TK103.
+    "device_adapter": "TK103"
     // You can create your own adapter. 
+    
+    //FOR USING A CUSTOM DEVICE ADAPTER
+     "device_adapter": require("./my_custom_adapter")
 ```
 
 ``` javascript
