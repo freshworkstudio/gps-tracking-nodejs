@@ -26,7 +26,7 @@ You need to have a mongo database up and running.
 #Usage
 Once you have installed gps-tracking module and a mongo database: 
 
-```javasript
+``` javascript
 var gps = require("gps-tracking");
 
 var options = {
