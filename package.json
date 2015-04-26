@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/freshworkstudio/gps-tracking-nodejs",
   "dependencies": {
-    "mongodb": "*",
+    "mongodb": "~1.0",
     "node.extend": "*"
   }
 }
