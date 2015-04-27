@@ -1,91 +1,96 @@
-# #GPS_TRACKING
+GPS_TRACKING
+==============
+
 This module let you easily create listeners for your GPS tracking devices. You can add your custom implementations to handle more protocols. 
 
-### Stay tuned - Contributions
-We are adding support for multiple devices and protocols.
-We highly appreciate your contributions to the project. 
-Please, just throw me an email at gonzalo@freshworkstudio.com if you have questions/suggestions.
+### v1.0 release
+We removed mongoDB dependecy for this package. Now you can use any DB to save the data you receive. 
 
+The old documentation is still available in the repository (tag v0.25)
 
-### Why NodeJS?
-nodeJS appears to be the perfect solution to receive the data for your multiple GPS devices thanks to the amazing performance an ease of use. 
-
-####Currently supported models
+#### Currently supported models
 - TK103
 
-###Installation   
+# Installation   
 With package manager [npm](http://npmjs.org/):
 
 	npm install gps-tracking
 
-### Prerequisites
-#### MongoDB
-You need to have a mongo database up and running. 
-[How to install MongoDB](http://docs.mongodb.org/manual/installation/)
-
-#Usage
-Once you have installed gps-tracking module and a mongo database: 
+# Usage
+Once you have installed the package, you can use it like: 
 
 ``` javascript
 var gps = require("gps-tracking");
 
 var options = {
-	'debug'					: true,
-	'port'					: 8090,
-	'device_adapter'		: "TK103",
-	"mongodb_connection"	: false, 
-	"mongodb_server": 
-	{
-		"host":"127.0.0.1",
-		"port":27017,
-		"opts":{}
-	},
-	'mongo_database':
-	{
-		'name':'gps-tracking-database',
-		'auth':false, 
-		'user':'your-username', //if auth=true
-		'password':'your-password' //if auth=true
-	},
-	"mongo_tables"				: 
-	{
-		"gps_data"  : "gps_data_table",
-		"alarms"    : "alarms_table"
-	}
+    'debug'                 : true,
+    'port'                  : 8090,
+    'device_adapter'        : "TK103"
 }
 
-var server = gps.server(opts,function(device,connection){
-    
-    //When the device sends the login request packet
+var server = gps.server(options,function(device,connection){
+
     device.on("login_request",function(device_id,msg_parts){
-    
-		//Do some stuff before authenticate the device... 
-		//Accept the login request. You can set false to reject the device.
-		this.login_authorized(true); 
-	});
-	
-	
-	//PING - When the gps sends their position  
-	device.on("ping",function(data){
-		//After the ping is received, but before the data is saved
-		//console.log(data);
-		return data;
-	});
-}
+
+        // Some devices sends a login request before transmitting their position
+        // Do some stuff before authenticate the device... 
+        
+        // Accept the login request. You can set false to reject the device.
+        this.login_authorized(true); 
+
+    });
+
+
+    //PING -> When the gps sends their position  
+    device.on("ping",function(data){
+
+        //After the ping is received, but before the data is saved
+        //console.log(data);
+        return data;
+
+    });
+
+});
 ```
 
-### Options
+### Step by step
+
+1) [Install Node](https://nodejs.org/)
+2) Create a folder for your project
+3) Copy the example code above in a .js file like server.js
+4) Install the package in the project folder
+``` bash
+cd /path/to/my/project
+npm install gps-tracking	
+```
+5) Run your server
+``` bash
+node server.js
+```
+# Overview
+With this package you are going to create a tcp server that listens on a open port of your server/computer for a specific gps device model. 
+For example, you are going to listen on port 8090 for 'TK103 gps-trackers'. 
+
+If you want to listen for different kind of trackers, you have to create another tcp server. You can do this in a different node.js program in the same server, but you have to listen in a different port. 
+
+So, you can  listen on port 8090 for TK103 devices and listen on 8091 for TK102 devices (or any gps-tracker you want)
+
+# Options
+#### debug
+Enables console.log messages. 
 ``` javascript
-    "debug":false, //Enables console.log messages. 
+    "debug":false, 
 ```
-
+#### port
+The port to listen to. Where the packages of the device will arrive. 
 ``` javascript
-    "port": 8080, //The port to listen to. Where the packages of the device will arrive. 
+    "port": 8080,
 ```
 
+#### device_adapter
+Which device adapter will be used to parse the incoming packets. 
 ``` javascript
     "device_adapter": false, 
-    // Wich device adapter will be used to parse the incoming packets. 
     // If false, the server will throw an error. 
     // At the moment, the modules comes with only one adater: TK103.
     "device_adapter": "TK103"
@@ -95,54 +100,23 @@ var server = gps.server(opts,function(device,connection){
      "device_adapter": require("./my_custom_adapter")
 ```
 
-``` javascript
-    "mongo_server": {
-        "host":"127.0.0.1", //Host where mongo is running
-        "port":27017, //Port where is running
-        "opts":{} //More options to pass to the connection
-    }, 
-    /* it uses: 
-    * var server = new mongodb.Server() function. 
-    */
-```
-
-``` javascript
-    "mongo_database": {
-        'name':'db_name', 
-        'auth':false, 
-        'user':'your-username', //if auth=true
-        'password':'your-password' //if auth=true
-    }, 
-    /* 
-    * name: Name of the database where the data it will be saved
-    * auth: If the connection to the database requires user/password
-    * user: user for authentication
-    * password: password for authentication
-    */
-```
-
-``` javascript
-   "mongo_tables"				: 
-	{
-		"gps_data"  : "gps_data_table", //default: 'gps_data'
-		"alarms"    : "alarms_table" //defaut: 'alarms'
-	}
-    /* 
-    * gps_data: Name of the table where the gps positions will be saved
-    * alarms: Name of the table where the alarms received will be saved.
-    */
-```
 # Events
-Once you create a server, you can access to the connection and the device object connected. Both emits events you can listen to create your app. 
+Once you create a server, you can access to the connection and the device object connected. Both objects emits events you can listen on your app. 
 ```javascript
-var server = gps.server(opts,function(device,connection){
+var server = gps.server(options,function(device,connection){
     //conection = net.createServer(...) object
     //device = Device object
 }
 ```
+
 #### connection events
-Emits: 'end','data','close','timeout','drain'
-You can [check the documentation here](http://nodejs.org/api/net.html#net_net_createserver_options_connectionlistener).
+Available events: 
+- end
+- data
+- close
+- timeout
+- drain
+You can [check the documentation of node.js net object here](http://nodejs.org/api/net.html#net_net_createserver_options_connectionlistener).
 
 ``` javascript
 //Example: 
@@ -156,6 +130,7 @@ var server = gps.server(opts,function(device,connection){
 ### Device object events
 Every time something connects to the server, a net connection and a new device object will be created.
 The Device object is your interface to send & receive packets/commands. 
+
 ``` javascript
 var server = gps.server(opts,function(device,connection){
     /*	Available device variables:
@@ -169,9 +144,9 @@ var server = gps.server(opts,function(device,connection){
     /******************************
 	LOGIN
 	******************************/
-	
 	device.on("login_request",function(device_id,msg_parts){
 		//Do some stuff before authenticate the device... 
+		
 		this.login_authorized(true); //Accept the login request.
 	});
 	device.on("login",function(){
@@ -179,8 +154,7 @@ var server = gps.server(opts,function(device,connection){
 		console.log("Hi! i'm "+this.uid);
 	});
 	device.on("login_rejected",function(){
-		//this = device
-		console.log("Hi! i'm "+this.uid);
+	
 	});
 	
 	
@@ -190,6 +164,7 @@ var server = gps.server(opts,function(device,connection){
 	device.on("ping",function(data){
 		//After the ping is received, but before the data is saved
 		//console.log(data);
+		console.log("I'm here now: "+gps_data.latitude+", "+gps_data.longitude+");
 		return data;
 	});
 	
@@ -211,15 +186,14 @@ var server = gps.server(opts,function(device,connection){
 	MISC 
 	******************************/
 	device.on("handshake",function(){
-		//this = device
-		console.log("Hi! i'm "+this.uid);
+		
 	});
 	
 });
 ```
 
 
-## Custom adapters
+# Custom adapters
 You have to create and exports an adapter function. 
 ```javascript
 exports.protocol="GPS103";
@@ -462,3 +436,12 @@ exports.adapter = adapter;
 
 
 ```
+
+
+#### Stay tuned - Contributions
+We are adding support for multiple devices and protocols.
+We highly appreciate your contributions to the project. 
+Please, just throw me an email at gonzalo@freshworkstudio.com if you have questions/suggestions.
+
+#### Why NodeJS?
+NodeJS appears to be the perfect solution to receive the data for your multiple GPS devices thanks to the amazing performance an ease of use. Actually, it's extremely fast and it's easy to understand. 
