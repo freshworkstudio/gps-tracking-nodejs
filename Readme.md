@@ -16,6 +16,11 @@ With package manager [npm](http://npmjs.org/):
 
 	npm install gps-tracking
 
+### Demo App
+You can check a basic demo app [here](https://github.com/freshworkstudio/gps-tracking-demo)
+
+https://github.com/freshworkstudio/gps-tracking-demo
+
 # Usage
 Once you have installed the package, you can use it like: 
 
