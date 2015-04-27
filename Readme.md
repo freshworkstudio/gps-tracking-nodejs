@@ -168,10 +168,6 @@ var server = gps.server(opts,function(device,connection){
 		return data;
 	});
 	
-	device.on("save_ping",function(ping_id, data){
-		//After the ping is received and saved
-		
-	});
 	
 	/******************************
 	ALARM - When the gps sends and alarm  
@@ -339,7 +335,6 @@ var adapter = function(device){
 	this.receive_alarm = function(msg_parts){
 		//@TODO: implement this
 		
-		//Maybe we can save the gps data too.
 		//gps_data = msg_parts.data.substr(1);
 		alarm_code = msg_parts.data.substr(0,1);
 		alarm = false;
