@@ -162,7 +162,7 @@ var server = gps.server(opts,function(device,connection){
 	PING - When the gps sends their position  
 	******************************/
 	device.on("ping",function(data){
-		//After the ping is received, but before the data is saved
+		//After the ping is received
 		//console.log(data);
 		console.log("I'm here now: "+gps_data.latitude+", "+gps_data.longitude+");
 		return data;
