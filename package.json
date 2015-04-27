@@ -1,6 +1,6 @@
 {
   "name": "gps-tracking",
-  "version": "0.2.6",
+  "version": "1.0.0",
   "description": "Let you work with some GPS trackers that connects through tcp. Also saves the data on your mongodb database ;) ",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/freshworkstudio/gps-tracking-nodejs",
   "dependencies": {
-    "mongodb": "~1.0",
     "node.extend": "*"
   }
 }
