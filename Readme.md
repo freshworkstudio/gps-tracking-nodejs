@@ -1,7 +1,16 @@
-GPS_TRACKING
+Node.js GPS TRACKING
 ==============
 
 This module let you easily create listeners for your GPS tracking devices. You can add your custom implementations to handle more protocols. 
+
+### New GPS Tracker emulator: 
+We created a brand new [gps emulator](http://gps-tracking-emulator.meteor.com/) so you can start testing your app in a breeze.
+You can signup to save your configured testing devices ;)
+http://gps-tracking-emulator.meteor.com/
+
+You can check the code of the emulator in [this repo](https://github.com/freshworkstudio/gps-tracking-emulator)
+https://github.com/freshworkstudio/gps-tracking-emulator
+
 
 ### v1.0 release
 We removed mongoDB dependecy for this package. Now you can use any DB to save the data you receive. 
