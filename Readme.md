@@ -5,11 +5,13 @@ This module let you easily create listeners for your GPS tracking devices. You c
 
 ### New GPS Tracker emulator: 
 We created a brand new [gps emulator](http://gps-tracking-emulator.meteor.com/) so you can start testing your app in a breeze.
-You can signup to save your configured testing devices ;)
-http://gps-tracking-emulator.meteor.com/
+You can signup to save your testing devices.
 
-You can check the code of the emulator in [this repo](https://github.com/freshworkstudio/gps-tracking-emulator)
-https://github.com/freshworkstudio/gps-tracking-emulator
+[http://gps-tracking-emulator.meteor.com/](http://gps-tracking-emulator.meteor.com/)
+
+You can check the code of the emulator in [this repo](https://github.com/freshworkstudio/gps-tracking-emulator).
+
+[https://github.com/freshworkstudio/gps-tracking-emulator](https://github.com/freshworkstudio/gps-tracking-emulator)
 
 
 ### v1.0 release
