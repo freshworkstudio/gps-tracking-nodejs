@@ -1,4 +1,4 @@
-Node.js GPS TRACKING
+GPS TRACKING | Node.js 
 ==============
 
 This module let you easily create listeners for your GPS tracking devices. You can add your custom implementations to handle more protocols. 
