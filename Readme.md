@@ -27,10 +27,12 @@ With package manager [npm](http://npmjs.org/):
 
 	npm install gps-tracking
 
-### Demo App
+### DEMO SERVER APP
 You can check a basic demo app [here](https://github.com/freshworkstudio/gps-tracking-demo)
 
-https://github.com/freshworkstudio/gps-tracking-demo
+### DEMO SERVER WEB APP
+You can check a Express + Socket.io + MongoDB + Google Maps Web app to see your devices in realtime [here](https://github.com/freshworkstudio/gps-google-maps-socket-io).
+
 
 # Usage
 Once you have installed the package, you can use it like: 
