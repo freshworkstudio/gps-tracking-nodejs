@@ -32,7 +32,7 @@ You can check a basic demo app [here](https://github.com/freshworkstudio/gps-tra
 
 ### DEMO SERVER WEB APP
 You can check a Express + Socket.io + MongoDB + Google Maps Web app to see your devices in realtime [here](https://github.com/freshworkstudio/gps-google-maps-socket-io).
-
+Also, you can see the live demo [here](http://gps.freshwork.co)
 
 # Usage
 Once you have installed the package, you can use it like: 
