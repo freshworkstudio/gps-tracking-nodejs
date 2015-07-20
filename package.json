@@ -1,6 +1,6 @@
 {
   "name": "gps-tracking",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Let you work with some GPS trackers that connects through tcp.",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "gps"
   ],
   "author": "Gonzalo De-Spirito (http://www.freshworkstudio.com/)",
-  "license": "GPLv3",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/freshworkstudio/gps-tracking-nodejs/issues"
   },
