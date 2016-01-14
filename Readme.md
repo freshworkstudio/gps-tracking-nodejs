@@ -74,8 +74,11 @@ var server = gps.server(options,function(device,connection){
 ### Step by step
 
 1) [Install Node](https://nodejs.org/)
+
 2) Create a folder for your project
+
 3) Copy the example code above in a .js file like server.js
+
 4) Install the package in the project folder
 ``` bash
 cd /path/to/my/project
