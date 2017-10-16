@@ -1,38 +1,26 @@
-GPS TRACKING | Node.js 
+
+![NODE.JS GPS Tracker Server](https://user-images.githubusercontent.com/1103494/31578284-95673986-b0f4-11e7-81dd-2fefd3fb0478.jpg)
+![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)
+
+GPS TRACKING SERVER | Node.js 
 ==============
 
-This module let you easily create listeners for your GPS tracking devices. You can add your custom implementations to handle more protocols. 
+This package let you easily create listeners for your GPS tracking devices. You can add your custom implementations to handle more protocols. 
 
-### New GPS Tracker emulator: 
-We created a brand new [gps emulator](http://gps-tracking-emulator.meteor.com/) so you can start testing your app in a breeze.
-You can signup to save your testing devices.
-
-[http://gps-tracking-emulator.meteor.com/](http://gps-tracking-emulator.meteor.com/)
-
-You can check the code of the emulator in [this repo](https://github.com/freshworkstudio/gps-tracking-emulator).
-
-[https://github.com/freshworkstudio/gps-tracking-emulator](https://github.com/freshworkstudio/gps-tracking-emulator)
-
-
-### v1.0 release
-We removed mongoDB dependecy for this package. Now you can use any DB to save the data you receive. 
-
-The old documentation is still available in the repository (tag v0.25)
-
-#### Currently supported models
-- TK103
+- [Installation](#Installation)
+- [Usage](#usage)
+- [Adapters](#adapters)
+- [Examples](#examples)
+- [GPS Emulator](#gps-emulator)
 
 # Installation   
 With package manager [npm](http://npmjs.org/):
 
 	npm install gps-tracking
 
-### DEMO SERVER APP
-You can check a basic demo app [here](https://github.com/freshworkstudio/gps-tracking-demo)
-
-### DEMO SERVER WEB APP
-You can check a Express + Socket.io + MongoDB + Google Maps Web app to see your devices in realtime [here](https://github.com/freshworkstudio/gps-google-maps-socket-io).
-Also, you can see the live demo [here](http://gps.freshwork.co:3000)
+#### Currently supported models
+- TK103
+* You can add your own adapters easily as commented below
 
 # Usage
 Once you have installed the package, you can use it like: 
@@ -154,27 +142,28 @@ Every time something connects to the server, a net connection and a new device o
 The Device object is your interface to send & receive packets/commands. 
 
 ``` javascript
-var server = gps.server(opts,function(device,connection){
+var server = gps.server(opts, function(device, connection){
     /*	Available device variables:
 		----------------------------
-		device.uid -> is setted when the first packet is parsed
-		device.name -> you can set a custon name for this device.
-		device.ip -> ip of the device
-		device.port --> device port
+		device.uid -> Set when the first packet is parsed
+		device.name -> You can set a custon name for this device.
+		device.ip -> IP of the device
+		device.port --> Device port
 	*/
 	
     /******************************
 	LOGIN
 	******************************/
-	device.on("login_request",function(device_id,msg_parts){
-		//Do some stuff before authenticate the device... 
-		
+	device.on("login_request", function(device_id, msg_parts){
+		//Do some stuff before authenticate the device...
+		// This way you can prevent from anyone to send their position without your consent
 		this.login_authorized(true); //Accept the login request.
 	});
-	device.on("login",function(){
-		//this = device
-		console.log("Hi! i'm "+this.uid);
+	
+	device.on("login",function() {
+		console.log("Hi! i'm " + device.uid);
 	});
+	
 	device.on("login_rejected",function(){
 	
 	});
@@ -186,7 +175,7 @@ var server = gps.server(opts,function(device,connection){
 	device.on("ping",function(data){
 		//After the ping is received
 		//console.log(data);
-		console.log("I'm here now: "+gps_data.latitude+", "+gps_data.longitude+");
+		console.log("I'm here now: " + gps_data.latitude + ", " + gps_data.longitude);
 		return data;
 	});
 	
@@ -194,9 +183,9 @@ var server = gps.server(opts,function(device,connection){
 	/******************************
 	ALARM - When the gps sends and alarm  
 	******************************/
-	device.on("alarm",function(alarm_code,alarm_data,msg_data){
-		console.log("Help! Something happend: "+alarm_code+" ("+alarm_data.msg+")");
-		call_me();
+	device.on("alarm", function(alarm_code, alarm_data, msg_data) {
+		console.log("Help! Something happend: " + alarm_code + " (" + alarm_data.msg + ")");
+		//call_me();
 	});	
 	
 	
@@ -208,11 +197,15 @@ var server = gps.server(opts,function(device,connection){
 	});
 	
 });
+
+server.setDebug(true);
 ```
 
+# Adapters
+If you want to create a new adapter, you have to create and exports an adapter function. 
+You can base your new adapter on one of these nativaly supported adapters: https://github.com/freshworkstudio/gps-tracking-nodejs/tree/master/lib/adapters
 
-# Custom adapters
-You have to create and exports an adapter function. 
+`youradapter.js`
 ```javascript
 exports.protocol="GPS103";
 exports.model_name="TK103";
@@ -453,6 +446,19 @@ exports.adapter = adapter;
 
 
 ```
+# Examples
+### DEMO SERVER APP
+You can check a basic demo app [here](https://github.com/freshworkstudio/gps-tracking-demo)
+
+### DEMO SERVER WEB APP
+You can check a Express + Socket.io + MongoDB + Google Maps Web app to see your devices in realtime [here](https://github.com/freshworkstudio/gps-google-maps-socket-io).
+Also, you can see the live demo [here](http://gps.freshwork.co:3000)
+
+
+# GPS Emulator 
+We created a brand new gps emulator so you can start testing your app in a breeze.
+You can check the code of the emulator in [this repo](https://github.com/freshworkstudio/gps-tracking-emulator). 
+[https://github.com/freshworkstudio/gps-tracking-emulator](https://github.com/freshworkstudio/gps-tracking-emulator)
 
 
 #### Stay tuned - Contributions
