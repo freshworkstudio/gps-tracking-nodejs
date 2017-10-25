@@ -21,6 +21,8 @@ With package manager [npm](http://npmjs.org/):
 #### Currently supported models
 - TK103
 - TK510
+- GT06
+- GT02A
 * You can add your own adapters easily as commented below
 
 # Usage
