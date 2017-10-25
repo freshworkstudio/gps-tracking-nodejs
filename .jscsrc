@@ -1,5 +1,5 @@
 {
     "preset": "airbnb",
-    "excludeFiles": ["node_modules/**", "bower_components/**", "resources/assets/js/app.js"],
-    "validateIndentation": "\t"
+    "excludeFiles": ["node_modules/**", "bower_components/**"],
+    "maxErrors": 1000
 }
