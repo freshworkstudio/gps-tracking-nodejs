@@ -20,7 +20,6 @@ With package manager [npm](http://npmjs.org/):
 
 #### Currently supported models
 - TK103
-- TK103B
 - TK510
 - GT06
 - GT02A
