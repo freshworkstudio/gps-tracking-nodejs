@@ -20,6 +20,7 @@ With package manager [npm](http://npmjs.org/):
 
 #### Currently supported models
 - TK103
+- TK510
 * You can add your own adapters easily as commented below
 
 # Usage
@@ -257,8 +258,8 @@ Example:
     			"data" 		: 'MORE_DATA(GPS,LBS,ETC)' //Mandatory
     			
     			//optional parameters. Anything you want.
-    			"optional_params': '',
-    			"more_optional_parameters':'...',
+    			"optional_params": '',
+    			"more_optional_parameters":'...',
             }
         }
     }
@@ -449,11 +450,6 @@ exports.adapter = adapter;
 # Examples
 ### DEMO SERVER APP
 You can check a basic demo app [here](https://github.com/freshworkstudio/gps-tracking-demo)
-
-### DEMO SERVER WEB APP
-You can check a Express + Socket.io + MongoDB + Google Maps Web app to see your devices in realtime [here](https://github.com/freshworkstudio/gps-google-maps-socket-io).
-Also, you can see the live demo [here](http://gps.freshwork.co:3000)
-
 
 # GPS Emulator 
 We created a brand new gps emulator so you can start testing your app in a breeze.
