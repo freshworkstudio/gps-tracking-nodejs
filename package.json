@@ -18,7 +18,7 @@
     "gps"
   ],
   "author": "Gonzalo De-Spirito (http://www.freshworkstudio.com/)",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/freshworkstudio/gps-tracking-nodejs/issues"
   },
