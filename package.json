@@ -25,7 +25,7 @@
   "homepage": "https://github.com/freshworkstudio/gps-tracking-nodejs",
   "dependencies": {
     "crc": "^3.5.0",
-    "crc16-ccitt-node": "^1.0.4",
+    "crc16-ccitt-node": "^1.0.6",
     "node.extend": "^2.0.1"
   }
 }
